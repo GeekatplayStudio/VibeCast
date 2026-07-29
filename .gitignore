@@ -1,0 +1,21 @@
+# Binary & Build Output
+bin/
+recordings/
+test_recordings/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Node / UI Dependencies
+node_modules/
+ui/node_modules/
+ui/dist/
+.vite/
+
+# IDE & OS Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

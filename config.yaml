@@ -1,0 +1,17 @@
+server:
+  host: "0.0.0.0"
+  port: 7880
+  rtc_port_range_start: 50000
+  rtc_port_range_end: 60000
+
+router:
+  type: "memory" # Options: memory, redis
+  redis_url: "redis://localhost:6379"
+
+auth:
+  keys:
+    devkey: "secretkey32byteslengthdevsecret123"
+
+mcp:
+  enabled: true
+  port: 8080

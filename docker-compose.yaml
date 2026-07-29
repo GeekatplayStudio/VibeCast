@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  sfu-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7880:7880"
+      - "8080:8080"
+      - "50000-50050:50000-50050/udp"
+    environment:
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+
+  agent-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["/app/agent-worker"]
+    depends_on:
+      - sfu-server
+
+  egress-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["/app/egress-server"]
+    volumes:
+      - ./recordings:/app/recordings
+    depends_on:
+      - sfu-server
+
+  ingress-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["/app/ingress-server"]
+    ports:
+      - "8088:8088"
+    depends_on:
+      - sfu-server
+
+  sip-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["/app/sip-server"]
+    ports:
+      - "5060:5060/udp"
+    depends_on:
+      - sfu-server
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+
