@@ -223,6 +223,22 @@ func TestRestAPIAndWebhookE2E(t *testing.T) {
 	}
 }
 
+func TestChatModeratorE2E(t *testing.T) {
+	moderator := agent.NewChatModerator(agent.SensitivityMedium)
+	ctx := context.Background()
+
+	safeMsg := moderator.EvaluateMessage(ctx, "user-1", "Alice", "Hello stream!")
+	if safeMsg.Status != agent.StatusApproved {
+		t.Fatalf("expected approved status, got %s", safeMsg.Status)
+	}
+
+	toxicMsg := moderator.EvaluateMessage(ctx, "user-2", "Bob", "This is spam and hate")
+	if toxicMsg.Status != agent.StatusFlagged {
+		t.Fatalf("expected flagged status for toxic msg, got %s", toxicMsg.Status)
+	}
+}
+
+
 
 
 

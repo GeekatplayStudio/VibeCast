@@ -1,8 +1,8 @@
 VibeCast Enterprise Media Server
 Copyright 2026 Geekatplay Studio (Vladimir Chopine). All rights reserved.
 
-This product incorporates architectural patterns, protocol concepts, and algorithms 
-originally developed by LiveKit, Inc. under the Apache License 2.0.
+This product was inspired by and incorporates architectural concepts originally 
+developed by LiveKit, Inc. (https://github.com/livekit/livekit) under the Apache License 2.0.
 
 Original Works & Credits:
 - LiveKit Server (Copyright LiveKit, Inc. - https://github.com/livekit/livekit)

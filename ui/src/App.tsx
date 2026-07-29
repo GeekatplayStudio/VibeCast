@@ -3,6 +3,8 @@ import { Activity, Bot, Cpu, Globe, Radio, ShieldCheck, Volume2, Sparkles } from
 import { RoomList, Participant } from './components/RoomList';
 import { TelemetryPanel } from './components/TelemetryPanel';
 import { AgentConsole } from './components/AgentConsole';
+import { ProducerStudio } from './components/ProducerStudio';
+import { StreamChat, ChatMsg } from './components/StreamChat';
 import { LanguageProvider, useTranslation } from './i18n/LanguageContext';
 import { Language } from './i18n/translations';
 
@@ -39,6 +41,47 @@ function DashboardContent() {
       dbov: -22.1,
     },
   ]);
+
+  const [chatMessages, setChatMessages] = useState<ChatMsg[]>([
+    {
+      id: '1',
+      senderName: 'Viewer_Alex',
+      text: 'Great live stream quality! Loving the AI assistant.',
+      timestamp: '11:45 AM',
+      status: 'APPROVED',
+      toxicity: 0.02,
+    },
+    {
+      id: '2',
+      senderName: 'Producer_Guard',
+      text: 'VLM vision moderation active on video feed.',
+      timestamp: '11:46 AM',
+      status: 'APPROVED',
+      toxicity: 0.05,
+    },
+  ]);
+
+  const handleSendChatMessage = (text: string) => {
+    const isToxic = text.toLowerCase().includes('spam') || text.toLowerCase().includes('hate');
+    const newMsg: ChatMsg = {
+      id: String(Date.now()),
+      senderName: 'StreamProducer',
+      text: text,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      status: isToxic ? 'FLAGGED' : 'APPROVED',
+      toxicity: isToxic ? 0.88 : 0.04,
+    };
+    setChatMessages((prev) => [...prev, newMsg]);
+    addLog(`[CHAT AI MODERATOR] Evaluated chat message. Status: ${newMsg.status} (Toxicity: ${Math.round(newMsg.toxicity * 100)}%)`);
+  };
+
+  const handleSensitivityChange = (sens: string) => {
+    addLog(`[PRODUCER STUDIO] Set VLM Guardrail Sensitivity to: ${sens}`);
+  };
+
+  const handleToggleOverlay = (overlay: string) => {
+    addLog(`[PRODUCER STUDIO] Toggled Stream Overlay: ${overlay}`);
+  };
 
   const handleConnect = () => {
     setIsConnected(!isConnected);
@@ -213,6 +256,11 @@ function DashboardContent() {
             </div>
           </div>
 
+          <ProducerStudio
+            onSensitivityChange={handleSensitivityChange}
+            onToggleOverlay={handleToggleOverlay}
+          />
+
           <RoomList
             roomName={roomName}
             participants={isConnected ? participants : []}
@@ -220,8 +268,12 @@ function DashboardContent() {
           />
         </div>
 
-        {/* Right Column: Telemetry, MCP Agent Console & Logs */}
+        {/* Right Column: Stream Chat, Telemetry, MCP Agent Console & Logs */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <StreamChat
+            messages={chatMessages}
+            onSendMessage={handleSendChatMessage}
+          />
           <TelemetryPanel
             bytesIn={isConnected ? 1485760 : 0}
             bytesOut={isConnected ? 2897152 : 0}

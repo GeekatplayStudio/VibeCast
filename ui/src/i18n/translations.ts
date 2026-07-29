@@ -26,6 +26,10 @@ export const translations: Record<Language, Record<string, string>> = {
     latencyLoss: 'Latency (RTT) / Loss',
     activeConnections: 'Active PeerConnections',
     language: 'Language',
+    producerStudio: 'Producer Studio Control Suite',
+    streamChat: 'Live Stream Chat',
+    aiModerated: 'AI VLM Moderated',
+    vlmGuardrails: 'VLM Stream Guardrails ON',
   },
   es: {
     title: 'AgenticSFU Empresarial',
