@@ -17,6 +17,29 @@ While honoring LiveKit's original vision, **VibeCast** represents a complete cle
 
 ---
 
+## 🏗️ Microservice System Architecture
+
+```
+                               ┌──────────────────────────────────┐
+                               │     VibeCast Enterprise Suite    │
+                               └────────────────┬─────────────────┘
+                                                │
+   ┌────────────────┬─────────────────┬─────────┴────────┬──────────────────┐
+   │                │                 │                  │                  │
+┌──▼─────────┐ ┌────▼──────────┐ ┌────▼─────────┐ ┌──────▼──────────┐ ┌─────▼──────────┐
+│ sfu-server │ │agent-worker   │ │egress-server │ │ingress-server   │ │sip-server     │
+│ (:7880)    │ │(Voice & Chat) │ │(MP4/RTMP/S3) │ │(WHIP :8088)     │ │(SIP UDP :5060)│
+└──┬─────────┘ └────┬──────────┘ └────┬─────────┘ └──────┬──────────┘ └─────┬──────────┘
+   │                │                 │                  │                  │
+   └────────────────┴─────────────────┼──────────────────┴──────────────────┘
+                                      │
+                   ┌──────────────────▼───────────────────┐
+                   │ Cyber-Glassmorphic Enterprise Web UI │
+                   └──────────────────────────────────────┘
+```
+
+---
+
 ## 🌟 Key Features
 
 - 🚀 **High-Throughput WebRTC Media Router**: Zero-allocation RTP packet forwarding, sequence remapping, and R-Factor MOS connection quality scoring.
@@ -63,7 +86,7 @@ docker-compose up --build
 
 ---
 
-## 🧪 Testing
+## 🧪 Testing & Verification
 
 Run the full end-to-end integration test suite:
 ```powershell
@@ -78,6 +101,7 @@ npm run build
 
 ---
 
-## 📜 License
+## 📜 License & Legal Attribution
 
 Licensed under the **Apache License, Version 2.0**. Free for open-source use, creators, and enterprise deployments.
+Original concepts and architectural inspiration credited to [LiveKit, Inc.](https://github.com/livekit/livekit).
