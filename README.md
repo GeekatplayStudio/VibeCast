@@ -1,18 +1,18 @@
-# VibeCast Enterprise
+# VibeCast
 
 > **High-Performance WebRTC SFU, Native Model Context Protocol (MCP) AI Agent Engine & Producer Studio**
 > Created by **Geekatplay Studio (Vladimir Chopine)** under the Apache 2.0 Open Source License.
 
 ---
 
-## 🙏 Credits & Inspiration
+## 🙏 Credits & Attribution
 
-**VibeCast Enterprise** was deeply inspired by and based on the pioneering concepts of [LiveKit](https://github.com/livekit/livekit). 
+**VibeCast** was inspired by and derived from open WebRTC architecture patterns pioneeringly demonstrated by projects like [LiveKit](https://github.com/livekit/livekit). 
 
-While honoring LiveKit's original vision, **VibeCast** represents a complete clean-room rewrite designed specifically for content creators, live streamers, and AI developers:
-- 🛡️ **Hardened Security & Vulnerability Fixes**: Completely audited and rewritten to eliminate memory/concurrency leaks, enforce strict HMAC-SHA256 JWT access token validation, and secure all signaling/REST endpoints.
-- 🎨 **Superior Producer Studio UI**: Features a state-of-the-art cyber-glassmorphic control panel with real-time VAD decibel wave meters, MOS quality badges, active participant controls, and 7-language i18n localization.
-- 🤖 **Native Model Context Protocol (MCP) Integration**: Built-in MCP Server (`:8080`) & WebRTC SCTP DataChannel bridge for zero-latency LLM agent tool discovery and execution.
+While building upon these foundational principles, **VibeCast** is tailored specifically for content creators, live streamers, and AI developers:
+- 🛡️ **Security & Access Control**: Enforces strict HMAC-SHA256 JWT access token validation and structured concurrency across signaling and REST endpoints.
+- 🎨 **Producer Studio UI**: Features a modern cyber-glassmorphic control panel with real-time VAD decibel wave meters, connection quality metrics, active participant controls, and multi-language (7 i18n) localization.
+- 🤖 **Native Model Context Protocol (MCP) Integration**: Built-in MCP Server (`:8080`) & WebRTC SCTP DataChannel bridge for AI agent tool discovery and execution.
 - 💬 **AI Stream Chat & VLM/LLM Moderation**: Built-in live stream chat with open-source Vision-Language Model (VLM) & LLM guardrails that monitor chat in real time, auto-enforce toxicity thresholds, and protect stream producers.
 
 ---
@@ -20,10 +20,10 @@ While honoring LiveKit's original vision, **VibeCast** represents a complete cle
 ## 🏗️ Microservice System Architecture
 
 ```
-                               ┌──────────────────────────────────┐
-                               │     VibeCast Enterprise Suite    │
-                               └────────────────┬─────────────────┘
-                                                │
+                                ┌──────────────────────────────────┐
+                                │          VibeCast Suite          │
+                                └────────────────┬─────────────────┘
+                                                 │
    ┌────────────────┬─────────────────┬─────────┴────────┬──────────────────┐
    │                │                 │                  │                  │
 ┌──▼─────────┐ ┌────▼──────────┐ ┌────▼─────────┐ ┌──────▼──────────┐ ┌─────▼──────────┐
@@ -34,7 +34,7 @@ While honoring LiveKit's original vision, **VibeCast** represents a complete cle
    └────────────────┴─────────────────┼──────────────────┴──────────────────┘
                                       │
                    ┌──────────────────▼───────────────────┐
-                   │ Cyber-Glassmorphic Enterprise Web UI │
+                   │   Cyber-Glassmorphic Web UI          │
                    └──────────────────────────────────────┘
 ```
 
@@ -42,11 +42,11 @@ While honoring LiveKit's original vision, **VibeCast** represents a complete cle
 
 ## 🌟 Key Features
 
-- 🚀 **High-Throughput WebRTC Media Router**: Zero-allocation RTP packet forwarding, sequence remapping, and R-Factor MOS connection quality scoring.
+- 🚀 **WebRTC Media Router**: Efficient RTP packet forwarding, sequence remapping, and real-time connection quality scoring.
 - 🎬 **Producer Studio Suite**: Dedicated creator control panel with AI VLM video feed monitoring, stream chat moderation, guardrail sensitivity controls, and overlay triggers.
-- 🤖 **Native Model Context Protocol (MCP) Server**: Dual-mode MCP agent tool bridge (HTTP REST `:8080` & sub-5ms WebRTC SCTP DataChannels).
+- 🤖 **Native Model Context Protocol (MCP) Server**: Dual-mode MCP agent tool bridge (HTTP REST `:8080` & WebRTC SCTP DataChannels).
 - 💬 **AI Chat Moderator & VLM Guardrails**: Real-time open-source LLM/VLM chat monitoring that automatically flags toxicity, blocks spam, and enforces producer rules.
-- 🎙️ **Zero-Latency AI Voice Assistant Pipeline**: Direct PCM-16/Opus audio frame ingestion with VAD speech end-pointing.
+- 🎙️ **AI Voice Assistant Pipeline**: Direct PCM-16/Opus audio frame ingestion with VAD speech end-pointing.
 - 📹 **Media Egress & Recording**: MP4/WebM room recorder, RTMP live streaming to YouTube/Twitch, and async S3 cloud storage export (`cmd/egress-server`).
 - 📡 **Media Ingress Stream Ingest**: IETF WHIP protocol endpoint (`:8088`) and RTSP IP Camera stream proxy (`cmd/ingress-server`).
 - 📞 **SIP / PSTN Telephony Gateway**: UDP `:5060` gateway allowing PSTN telephone callers to dial into WebRTC rooms (`cmd/sip-server`).
@@ -103,5 +103,5 @@ npm run build
 
 ## 📜 License & Legal Attribution
 
-Licensed under the **Apache License, Version 2.0**. Free for open-source use, creators, and enterprise deployments.
+Licensed under the **Apache License, Version 2.0**. Free for open-source use, creators, and developers.
 Original concepts and architectural inspiration credited to [LiveKit, Inc.](https://github.com/livekit/livekit).
